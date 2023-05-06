@@ -7,6 +7,7 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { SELECTED_LANGUAGE_KEY } from "@/utils/const";
 import { blue } from '@ant-design/colors';
 import useTrans from "@/hooks/useTrans";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <Header />
         <Typography.Title style={{textAlign: 'center'}}>{trans['app.title']}</Typography.Title>
         <Link href="/replacement-app" locale={locale}>
           <Card title={trans['replacement_app']} style={{width: '30vw'}}>
