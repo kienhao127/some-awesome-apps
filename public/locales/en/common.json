@@ -1,0 +1,15 @@
+{
+  "app.title": "Some Awesome Apps",
+  "replacement_app": "Replacement App",
+  "replacement_app_description": "Replace the words in the passage according to your list.",
+  "original_word": "Original word",
+  "destination_word": "Destination word",
+  "add": "Add",
+  "replacement_map": "Replacement map",
+  "remove": "Remove",
+  "empty_text": "No data",
+  "text": "Text",
+  "input_text": "Input text",
+  "apply": "Apply",
+  "result": "Result"
+}

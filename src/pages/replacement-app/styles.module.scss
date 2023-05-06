@@ -1,0 +1,31 @@
+.replacement-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    &__title {
+        text-align: center;
+    }
+    &__content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 80vw;
+        gap: 2rem;
+    }
+    &__col {
+        width: 100%;
+    }
+}
+
+@media (width > 768px) {
+    .replacement-map {
+        &__content {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        &__col {
+            width: 50%;
+        }
+    }
+}
