@@ -3,16 +3,20 @@ import { Card, Space, Typography } from "antd";
 import { Inter } from "next/font/google";
 import styles from "src/styles/Home.module.css";
 import Link from "next/link";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { SELECTED_LANGUAGE_KEY } from "@/utils/const";
-import { blue } from '@ant-design/colors';
+import { blue } from "@ant-design/colors";
 import useTrans from "@/hooks/useTrans";
-import Header from "@/components/Header";
+import dynamic from "next/dynamic";
+import { useContext } from "react";
+import { AppContext } from "@/context/App/Context";
+
+const DynamicHeader = dynamic(() => import("@/components/Header"), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [locale] = useLocalStorage<string>(SELECTED_LANGUAGE_KEY, "");
+  const { language } = useContext(AppContext);
   const trans = useTrans();
   return (
     <>
@@ -23,12 +27,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <Header />
-        <Typography.Title style={{textAlign: 'center'}}>{trans['app.title']}</Typography.Title>
-        <Link href="/replacement-app" locale={locale}>
-          <Card title={trans['replacement_app']} style={{width: '30vw'}}>
-            <Typography style={{color: blue.primary}}>
-              {trans['replacement_app_description']}
+        <DynamicHeader />
+        <Typography.Title style={{ textAlign: "center" }}>
+          {trans["app.title"]}
+        </Typography.Title>
+        <Link href="/replacement-app" locale={language}>
+          <Card title={trans["replacement_app"]} style={{ width: "30vw" }}>
+            <Typography style={{ color: blue.primary }}>
+              {trans["replacement_app_description"]}
             </Typography>
           </Card>
         </Link>

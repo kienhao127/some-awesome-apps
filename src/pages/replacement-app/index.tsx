@@ -7,12 +7,12 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { REPLACEMENT_MAP_KEY } from "@/utils/const";
 import useTrans from "@/hooks/useTrans";
 import dynamic from 'next/dynamic'
-import Header from "@/components/Header";
 
-const DynamicLanguageSwitchButton = dynamic(
-  () => import('@/components/LanguageSwitchButton'),
+const DynamicHeader = dynamic(
+  () => import('@/components/Header'),
   { ssr: false }
 )
+
 function ReplacementAppPage() {
   const [replacementMap, setReplacementMap] = useLocalStorage<ReplacementMap>(
     REPLACEMENT_MAP_KEY,
@@ -60,11 +60,10 @@ function ReplacementAppPage() {
 
   return (
     <div className={styles["replacement-map"]}>
-      <Header />
+      <DynamicHeader />
       <Typography.Title level={1} className={styles["replacement-map__title"]}>
         {trans["replacement_app"]}
       </Typography.Title>
-      <DynamicLanguageSwitchButton />
       <div className={styles["replacement-map__content"]}>
         <div className={styles["replacement-map__col"]}>
           <Typography.Title level={4}>{trans["input_text"]}</Typography.Title>

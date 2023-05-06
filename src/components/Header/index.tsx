@@ -2,18 +2,26 @@ import { Typography } from "antd";
 import { blue } from "@ant-design/colors";
 import styles from "./styles.module.scss";
 import Link from "next/link";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { SELECTED_LANGUAGE_KEY } from "@/utils/const";
+import dynamic from "next/dynamic";
+import { useContext } from "react";
+import { AppContext } from "@/context/App/Context";
+
+const DynamicLanguageSwitchButton = dynamic(
+  () => import("@/components/LanguageSwitchButton"),
+  { ssr: false }
+);
 
 const Header = () => {
-  const [locale] = useLocalStorage<string>(SELECTED_LANGUAGE_KEY, "");
+  const { language } = useContext(AppContext);
+
   return (
     <header className={styles["header"]}>
-      <Link href={"/"} locale={locale}>
+      <Link href={"/"} locale={language}>
         <Typography.Title style={{ color: blue.primary }}>
           Soawap
         </Typography.Title>
       </Link>
+      <DynamicLanguageSwitchButton />
     </header>
   );
 };

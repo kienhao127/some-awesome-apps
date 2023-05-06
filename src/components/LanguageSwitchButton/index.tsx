@@ -1,25 +1,17 @@
 'use client'
 import { Button } from 'antd';
-import useLocalStorage from '@/hooks/useLocalStorage';
-import { SELECTED_LANGUAGE_KEY } from '@/utils/const';
-import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import { AppContext } from '@/context/App/Context';
 
 const LanguageSwitchButton = () => {
-  const router = useRouter();
-
-  const [currentLanguage, setCurrentLanguage] = useLocalStorage<string>(SELECTED_LANGUAGE_KEY, 'en')
-
-  const changeLanguage = (language: string) => {
-    router.push(router.pathname, router.asPath, {locale: language})
-    setCurrentLanguage(language);
-  };
+  const { language, changeLanguage } = useContext(AppContext);
 
   return (
     <Button.Group>
-      <Button type={currentLanguage === 'en' ? 'primary' : 'default'} onClick={() => changeLanguage('en')}>
+      <Button type={language === 'en' ? 'primary' : 'default'} onClick={() => changeLanguage('en')}>
         English
       </Button>
-      <Button type={currentLanguage === 'vi' ? 'primary' : 'default'} onClick={() => changeLanguage('vi')}>
+      <Button type={language === 'vi' ? 'primary' : 'default'} onClick={() => changeLanguage('vi')}>
         Tiếng Việt
       </Button>
     </Button.Group>
