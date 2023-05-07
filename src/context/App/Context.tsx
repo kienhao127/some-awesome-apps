@@ -1,3 +1,4 @@
+import { DEFAULT_LANGUAGE } from '@/utils/const';
 import React from 'react';
 
 interface AppContextType {
@@ -6,6 +7,6 @@ interface AppContextType {
 }
 
 export const AppContext = React.createContext<AppContextType>({
-  language: 'en',
+  language: DEFAULT_LANGUAGE,
   changeLanguage: () => {},
 });

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AppContext } from "./Context";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { SELECTED_LANGUAGE_KEY } from "@/utils/const";
+import { DEFAULT_LANGUAGE, SELECTED_LANGUAGE_KEY } from "@/utils/const";
 import { useRouter } from "next/router";
 
 interface AppProviderProps {
@@ -11,7 +11,7 @@ interface AppProviderProps {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [language, setLanguage] = useLocalStorage<string>(
     SELECTED_LANGUAGE_KEY,
-    ""
+    DEFAULT_LANGUAGE
   );
   const router = useRouter();
 

@@ -1,19 +1,24 @@
-import { Button } from 'antd';
-import { useContext } from 'react';
-import { AppContext } from '@/context/App/Context';
+import { Select } from "antd";
+import { useContext } from "react";
+import { AppContext } from "@/context/App/Context";
+const { Option } = Select;
 
 const LanguageSwitchButton = () => {
   const { language, changeLanguage } = useContext(AppContext);
 
+  const handleLanguageChange = (newLanguage: string) => {
+    changeLanguage(newLanguage);
+  };
+
   return (
-    <Button.Group>
-      <Button type={language === 'en' ? 'primary' : 'default'} onClick={() => changeLanguage('en')}>
-        English
-      </Button>
-      <Button type={language === 'vi' ? 'primary' : 'default'} onClick={() => changeLanguage('vi')}>
-        Tiếng Việt
-      </Button>
-    </Button.Group>
+    <Select
+      defaultValue={language}
+      onChange={handleLanguageChange}
+      style={{ width: '110px'}}
+    >
+      <Option value="en">English</Option>
+      <Option value="vi">Tiếng Việt</Option>
+    </Select>
   );
 };
 
