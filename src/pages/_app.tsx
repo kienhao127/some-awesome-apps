@@ -4,6 +4,9 @@ import type { AppProps } from "next/app";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Head from "next/head";
+import { Inter } from "next/font/google";
+import styles from "src/styles/Home.module.css";
+const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -28,11 +31,13 @@ export default function App({ Component, pageProps }: AppProps) {
       />
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="../../public/favicon.ico" />
+        <link rel="icon" href="./favicon.ico" />
       </Head>
       <AppProvider>
         <Header />
-        <Component {...pageProps} />
+        <main className={`${styles.main} ${inter.className}`}>
+          <Component {...pageProps} />
+        </main>
       </AppProvider>
     </>
   );
