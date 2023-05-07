@@ -1,4 +1,3 @@
-'use client'
 import { Button } from 'antd';
 import { useContext } from 'react';
 import { AppContext } from '@/context/App/Context';
