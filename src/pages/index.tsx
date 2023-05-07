@@ -9,7 +9,7 @@ import styles from "@/styles/Home.module.css";
 import { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import { App, Response } from "@/models";
 import React from "react";
-import { DEFAULT_LANGUAGE } from "@/utils/const";
+import { API_DOMAIN, DEFAULT_LANGUAGE } from "@/utils/const";
 
 // Static Side Render
 const Home: NextPage<Response<App[]>> = ({ data }) => {
@@ -46,7 +46,7 @@ const Home: NextPage<Response<App[]>> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   try {
-    const res = await fetch("http://localhost:3000/api/apps", {
+    const res = await fetch(`${API_DOMAIN}/api/apps`, {
       method: "GET",
       headers: {
         "Accept-Language": locale || DEFAULT_LANGUAGE
