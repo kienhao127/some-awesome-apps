@@ -1,0 +1,25 @@
+.footer {
+    height: 60px;
+    width: 100vw;
+    box-shadow: 0 4px 4px 4px rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    gap: 1rem;
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    &__buymeacoffee {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+}

@@ -1,0 +1,5 @@
+{
+  "px2rem_converter": "PX to REM Converter",
+  "px2rem_converter_description": "Convert PX to REM or vice versa",
+  "px2rem_note": "The calculation is based on a root font size of "
+}

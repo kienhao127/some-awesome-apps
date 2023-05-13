@@ -1,0 +1,14 @@
+{
+  "replacement_app": "Ứng dụng thay thế từ",
+  "replacement_app_description": "Thay thế các từ trong đoạn văn theo danh sách của bạn.",
+  "original_word": "Từ gốc",
+  "destination_word": "Từ thay thế",
+  "add": "Thêm",
+  "replacement_map": "Danh sách cặp từ",
+  "remove": "Xóa",
+  "empty_text": "Không có dữ liệu",
+  "text": "Văn bản",
+  "input_text": "Nhập Văn bản",
+  "apply": "Áp dụng",
+  "result": "Kết quả"
+}

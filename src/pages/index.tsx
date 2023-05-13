@@ -2,44 +2,41 @@ import Head from "next/head";
 import { Card, Typography } from "antd";
 import Link from "next/link";
 import { blue } from "@ant-design/colors";
-import useTrans from "@/hooks/useTrans";
-import { useContext, useEffect } from "react";
-import { AppContext } from "@/context/App/Context";
-import styles from "@/styles/Home.module.css";
-import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import styles from "@/styles/app.module.css";
+import { GetStaticProps, NextPage } from "next";
 import { App, Response } from "@/models";
 import React from "react";
 import { API_DOMAIN, DEFAULT_LANGUAGE } from "@/utils/const";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Static Side Render
 const Home: NextPage<Response<App[]>> = ({ data }) => {
-  const { language } = useContext(AppContext);
-  const trans = useTrans();
+  const { t } = useTranslation("common");
 
   return (
     <>
       <Head>
-        <title>{trans["app.title"]}</title>
-        <meta name="description" content={trans["app.title"]} />
+        <title>{t("app.title")}</title>
+        <meta name="description" content={t("app.title") || ""} />
       </Head>
 
       <Typography.Title style={{ textAlign: "center" }}>
-        {trans["app.title"]}
+        {t("app.title")}
       </Typography.Title>
-      {data.map((item) => {
-        return (
-          <Link href={item.path} key={item.id} locale={language}>
-            <Card
-              title={item.name}
-              className={styles["app-card"]}
-            >
-              <Typography style={{ color: blue.primary }}>
-                {item.description}
-              </Typography>
-            </Card>
-          </Link>
-        );
-      })}
+      <div className={styles['app-card-container']}>
+        {data.map((item) => {
+          return (
+            <Link href={item.path} key={item.id}>
+              <Card title={t(item.name)} className={styles["app-card"]}>
+                <Typography style={{ color: blue.primary }}>
+                  {t(item.description)}
+                </Typography>
+              </Card>
+            </Link>
+          );
+        })}
+      </div>
     </>
   );
 };
@@ -49,21 +46,31 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     const res = await fetch(`${API_DOMAIN}/api/apps`, {
       method: "GET",
       headers: {
-        "Accept-Language": locale || DEFAULT_LANGUAGE
-      }
+        "Accept-Language": locale || DEFAULT_LANGUAGE,
+      },
     });
     const resp: Response<App[]> = await res.json();
 
     return {
       props: {
         ...resp,
+        ...(await serverSideTranslations(locale || DEFAULT_LANGUAGE, [
+          "common",
+        ])),
       },
     };
   } catch (error) {
     return {
-      props: { error: -1, message: "Something went wrong", data: [] },
+      props: {
+        error: -1,
+        message: "Something went wrong",
+        data: [],
+        ...(await serverSideTranslations(locale || DEFAULT_LANGUAGE, [
+          "common",
+        ])),
+      },
     };
   }
-}
+};
 
 export default Home;

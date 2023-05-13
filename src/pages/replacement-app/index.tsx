@@ -1,11 +1,13 @@
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Button, Col, Input, List, Row, Typography, notification } from "antd";
 import { useState } from "react";
 import styles from "./styles.module.scss";
 import { ReplacementMap } from "@/models";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { REPLACEMENT_MAP_KEY } from "@/utils/const";
-import useTrans from "@/hooks/useTrans";
+import { DEFAULT_LANGUAGE, REPLACEMENT_MAP_KEY } from "@/utils/const";
 import Head from "next/head";
+import { useTranslation } from "next-i18next";
+import { GetStaticProps } from "next";
 
 function ReplacementAppPage() {
   const [replacementMap, setReplacementMap] = useLocalStorage<ReplacementMap>(
@@ -16,7 +18,8 @@ function ReplacementAppPage() {
   const [value, setValue] = useState("");
   const [longString, setLongString] = useState("");
   const [replacedString, setReplacedString] = useState("");
-  const trans = useTrans();
+  const { t } = useTranslation("replacement");
+  const { t: tCommon } = useTranslation('common')
 
   const addReplacement = () => {
     if (key && value) {
@@ -55,24 +58,25 @@ function ReplacementAppPage() {
   return (
     <>
       <Head>
-        <title>{`${trans["replacement_app"]} | ${trans["app.title"]}`}</title>
+        <title>{`${t("replacement_app")} | ${t("app.title")}`}</title>
         <meta
           name="description"
-          content={trans["replacement_app_description"]}
+          content={t("replacement_app_description") || ""}
         />
+        <meta name="keywords" content="replacement, replacement app, replacement_app"/>
       </Head>
       <div className={styles["replacement-map"]}>
         <Typography.Title
           level={1}
           className={styles["replacement-map__title"]}
         >
-          {trans["replacement_app"]}
+          {t("replacement_app")}
         </Typography.Title>
         <div className={styles["replacement-map__content"]}>
           <div className={styles["replacement-map__col"]}>
-            <Typography.Title level={4}>{trans["input_text"]}</Typography.Title>
+            <Typography.Title level={4}>{t("input_text")}</Typography.Title>
             <Input.TextArea
-              placeholder={trans["text"] || ""}
+              placeholder={t("text") || ""}
               autoSize={{ minRows: 4, maxRows: 8 }}
               value={longString}
               onChange={(e) => setLongString(e.target.value)}
@@ -80,11 +84,11 @@ function ReplacementAppPage() {
             <Row gutter={[16, 16]} style={{ marginTop: "0.5rem" }}>
               <Col span={6}>
                 <Button type="primary" onClick={replacedStringHandler}>
-                  {trans["apply"]}
+                  {t("apply")}
                 </Button>
               </Col>
             </Row>
-            <Typography.Title level={4}>{trans["result"]}</Typography.Title>
+            <Typography.Title level={4}>{t("result")}</Typography.Title>
             <Input.TextArea
               onClick={handleCopy}
               autoSize={{ minRows: 4, maxRows: 8 }}
@@ -95,12 +99,12 @@ function ReplacementAppPage() {
           </div>
           <div className={styles["replacement-map__col"]}>
             <Typography.Title level={4}>
-              {trans["replacement_map"]}
+              {t("replacement_map")}
             </Typography.Title>
             <List
               bordered
               dataSource={Object.entries(replacementMap || {})}
-              locale={{ emptyText: trans["empty_text"] }}
+              locale={{ emptyText: t("empty_text") }}
               renderItem={([key, value]) => (
                 <List.Item>
                   <Typography.Text mark>{key}</Typography.Text>: {value}
@@ -109,7 +113,7 @@ function ReplacementAppPage() {
                     danger
                     onClick={() => removeReplacement(key)}
                   >
-                    {trans["remove"]}
+                    {t("remove")}
                   </Button>
                 </List.Item>
               )}
@@ -117,14 +121,14 @@ function ReplacementAppPage() {
             <Row gutter={[16, 16]} style={{ marginTop: "0.5rem" }}>
               <Col span={9}>
                 <Input
-                  placeholder={trans["original_word"] || ""}
+                  placeholder={t("original_word") || ""}
                   value={key}
                   onChange={(e) => setKey(e.target.value)}
                 />
               </Col>
               <Col span={9}>
                 <Input
-                  placeholder={trans["destination_word"] || ""}
+                  placeholder={t("destination_word") || ""}
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                 />
@@ -135,7 +139,7 @@ function ReplacementAppPage() {
                   onClick={addReplacement}
                   style={{ width: "100%" }}
                 >
-                  {trans["add"]}
+                  {t("add")}
                 </Button>
               </Col>
             </Row>
@@ -147,3 +151,11 @@ function ReplacementAppPage() {
 }
 
 export default ReplacementAppPage;
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || DEFAULT_LANGUAGE, ["replacement", "common"])),
+    },
+  };
+};

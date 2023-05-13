@@ -1,20 +1,21 @@
 import { Select } from "antd";
-import { useContext } from "react";
-import { AppContext } from "@/context/App/Context";
+import { useRouter } from "next/router";
 const { Option } = Select;
 
 const LanguageSwitchButton = () => {
-  const { language, changeLanguage } = useContext(AppContext);
+  const router = useRouter();
 
   const handleLanguageChange = (newLanguage: string) => {
-    changeLanguage(newLanguage);
+    router.push(router.route, router.asPath, {
+      locale: newLanguage,
+    });
   };
 
   return (
     <Select
-      defaultValue={language}
+      defaultValue={router.locale}
       onChange={handleLanguageChange}
-      style={{ width: '110px'}}
+      style={{ width: "110px" }}
     >
       <Option value="en">English</Option>
       <Option value="vi">Tiếng Việt</Option>

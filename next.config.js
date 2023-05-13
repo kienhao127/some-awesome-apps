@@ -1,5 +1,6 @@
 
 const path = require('path');
+const { i18n } = require("./next-i18next.config");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,10 +8,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  i18n: {
-    locales: ['en', 'vi'],
-    defaultLocale: 'en',
-  },
+  i18n,
   sassOptions: {
     includePaths: [path.join(__dirname, '/**/**/*.scss')],
   },
