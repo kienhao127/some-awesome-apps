@@ -1,0 +1,8 @@
+{
+  "compare_json": "Compare 2 JSON",
+  "compare_json_description": "Compare 2 JSON and Return missing [key]]",
+  "input_json": "Input JSON",
+  "compare": "Compare",
+  "missing_from_A": "Missing from JSON A",
+  "missing_from_B": "Missing from JSON B"
+}

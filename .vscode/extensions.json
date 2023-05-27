@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "oderwat.indent-rainbow",
+    "dsznajder.es7-react-js-snippets",
+    "johnpapa.vscode-peacock",
+    "esbenp.prettier-vscode",
+    "tabnine.tabnine-vscode",
+    "dbaeumer.vscode-eslint"
+  ]
+}

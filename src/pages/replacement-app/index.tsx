@@ -19,7 +19,6 @@ function ReplacementAppPage() {
   const [longString, setLongString] = useState("");
   const [replacedString, setReplacedString] = useState("");
   const { t } = useTranslation("replacement");
-  const { t: tCommon } = useTranslation('common')
 
   const addReplacement = () => {
     if (key && value) {
