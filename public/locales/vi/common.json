@@ -5,6 +5,6 @@
   "replacement_app_description": "Thay thế các từ trong đoạn văn theo danh sách của bạn.",
   "px2rem_converter": "Chuyển PX thành REM",
   "px2rem_converter_description": "Chuyển PX thành REM hoặc ngược lại.",
-  "compare_json": "So sánh 2 JSON",
-  "compare_json_description": "So sánh 2 JSON và Trả về [key] khác biệt"
+  "compare_json": "So sánh 2 JSON/Object",
+  "compare_json_description": "So sánh 2 JSON/Object và Trả về [key] khác biệt"
 }

@@ -1,8 +1,8 @@
 {
-  "compare_json": "So sánh 2 JSON",
-  "compare_json_description": "So sánh 2 JSON và Trả về [key] khác biệt",
-  "input_json": "Nhập JSON",
+  "compare_json": "So sánh 2 JSON/Object",
+  "compare_json_description": "So sánh 2 JSON/Object và Trả về [key] khác biệt",
+  "input_json": "Nhập JSON/Object",
   "compare": "So sánh",
-  "missing_from_A": "Thiếu ở JSON A",
-  "missing_from_B": "Thiếu ở JSON B"
+  "missing_from_A": "Thiếu ở JSON/Object A",
+  "missing_from_B": "Thiếu ở JSON/Object B"
 }
