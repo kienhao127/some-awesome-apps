@@ -62,9 +62,12 @@ function ReplacementAppPage() {
           name="description"
           content={t("replacement_app_description") || ""}
         />
-        <meta name="keywords" content="replacement, replacement app, replacement_app"/>
+        <meta
+          name="keywords"
+          content="replacement, replacement app, replacement_app"
+        />
       </Head>
-      <div className={styles["replacement-map"]}>
+      <section className={styles["replacement-map"]}>
         <Typography.Title
           level={1}
           className={styles["replacement-map__title"]}
@@ -144,7 +147,7 @@ function ReplacementAppPage() {
             </Row>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }
@@ -154,7 +157,10 @@ export default ReplacementAppPage;
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale || DEFAULT_LANGUAGE, ["replacement", "common"])),
+      ...(await serverSideTranslations(locale || DEFAULT_LANGUAGE, [
+        "replacement",
+        "common",
+      ])),
     },
   };
 };

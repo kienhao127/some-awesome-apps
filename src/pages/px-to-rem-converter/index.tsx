@@ -136,7 +136,7 @@ function ReplacementAppPage() {
           content="px2rem, px-to-rem, px to rem, converter"
         />
       </Head>
-      <div className={styles["px2rem-app"]}>
+      <section className={styles["px2rem-app"]}>
         <Typography.Title level={1} className={styles["px2rem-app__title"]}>
           {t("px2rem_converter")}
         </Typography.Title>
@@ -199,7 +199,7 @@ function ReplacementAppPage() {
             </Col>
           </Row>
         </div>
-      </div>
+      </section>
     </>
   );
 }

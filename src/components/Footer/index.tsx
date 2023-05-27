@@ -1,9 +1,16 @@
 import Link from "next/link";
 import styles from "./styles.module.scss";
-import { Layout, Typography } from "antd";
+import { Layout, Typography, theme } from "antd";
 import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons";
+import ThemeSwitchButton, {
+  ThemeSwitchButtonProps,
+} from "../ThemeSwitchButton";
 
-const Footer = () => {
+type FooterProps = ThemeSwitchButtonProps;
+
+const Footer = (props: FooterProps) => {
+  const { token } = theme.useToken();
+
   return (
     <Layout.Footer className={styles["footer"]}>
       <div className={styles["footer__left"]}>
@@ -16,14 +23,16 @@ const Footer = () => {
         </Link>
         <span>·</span>
         <Link href="https://github.com/kienhao127/some-awesome-apps">
-          <GithubOutlined style={{ color: "black" }} />
+          <GithubOutlined style={{ color: token.colorPrimary }} />
         </Link>
         <span>·</span>
         <Link href="https://linkedin.com/in/luongkienhao">
-          <LinkedinOutlined style={{ color: "black" }} />
+          <LinkedinOutlined style={{ color: token.colorPrimary }} />
         </Link>
       </div>
       <div className={styles["footer__right"]}>
+        <ThemeSwitchButton {...props} />
+        <span>·</span>
         <Link href={"/about"}>
           <Typography.Text>About</Typography.Text>
         </Link>

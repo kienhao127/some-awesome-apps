@@ -1,10 +1,8 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { Button, Col, Input, List, Row, Typography, notification } from "antd";
+import { Button, Col, Input, Row, Typography } from "antd";
 import { useState } from "react";
 import styles from "./styles.module.scss";
-import { ReplacementMap } from "@/models";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { DEFAULT_LANGUAGE, REPLACEMENT_MAP_KEY } from "@/utils/const";
+import { DEFAULT_LANGUAGE } from "@/utils/const";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { GetStaticProps } from "next";
@@ -27,11 +25,6 @@ function CompareJson() {
     } catch (error) {
       return "Object";
     }
-  };
-
-  const convertToObject = (jsonString: string): Record<string, any> => {
-    // Remove whitespace and curly braces from the string
-    return eval(`(${jsonString})`);
   };
 
   const onCompareJson = (json1: string, json2: string) => {
@@ -88,7 +81,7 @@ function CompareJson() {
         />
         <meta name="keywords" content="compare, compare json, json" />
       </Head>
-      <div className={styles["compare-json"]}>
+      <section className={styles["compare-json"]}>
         <Typography.Title level={1} className={styles["compare-json__title"]}>
           {tCompare("compare_json")}
         </Typography.Title>
@@ -139,7 +132,7 @@ function CompareJson() {
             </Col>
           </Row>
         </div>
-      </div>
+      </section>
     </>
   );
 }

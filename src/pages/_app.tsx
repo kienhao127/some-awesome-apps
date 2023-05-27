@@ -7,10 +7,14 @@ import { Inter } from "next/font/google";
 import styles from "src/styles/app.module.css";
 import { appWithTranslation } from "next-i18next";
 import Footer from "@/components/Footer";
-import { Layout } from "antd";
+import { Layout, ConfigProvider, theme } from "antd";
+import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
+const { defaultAlgorithm, darkAlgorithm } = theme;
 
 function App({ Component, pageProps }: AppProps) {
+  const [darkMode, setDarkMode] = useState(true)!;
+
   return (
     <>
       <Script
@@ -35,13 +39,29 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="./favicon.ico" />
       </Head>
-      <Layout>
-        <Header />
-        <Layout.Content className={`${styles.main} ${inter.className}`}>
-          <Component {...pageProps} />
-        </Layout.Content>
-        <Footer />
-      </Layout>
+
+      <ConfigProvider
+        theme={{
+          algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
+          token: {
+            colorPrimary: "#2D88FF",
+          },
+          components: {
+            Layout: {
+              colorBgHeader: darkMode ? "#242526" : "#FFFFFF",
+              colorBgBody: darkMode ? "#18191A" : "#FFFFFF",
+            },
+          },
+        }}
+      >
+        <Layout>
+          <Header />
+          <Layout.Content className={`${styles.main} ${inter.className}`}>
+            <Component {...pageProps} />
+          </Layout.Content>
+          <Footer darkMode={darkMode} setDarkMode={setDarkMode} />
+        </Layout>
+      </ConfigProvider>
     </>
   );
 }
