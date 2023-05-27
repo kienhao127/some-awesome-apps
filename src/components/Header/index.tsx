@@ -10,7 +10,6 @@ const DynamicLanguageSwitchButton = dynamic(
 );
 
 const Header = () => {
-
   return (
     <header className={styles["header"]}>
       <Link href={"/"}>
