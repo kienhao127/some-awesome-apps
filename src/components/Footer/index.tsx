@@ -31,8 +31,11 @@ const Footer = (props: FooterProps) => {
         </Link>
       </div>
       <div className={styles["footer__right"]}>
-        <ThemeSwitchButton {...props} />
-        <span>·</span>
+        {/* TODO: Theme Mode in SSR */}
+        <div style={{ display: "none" }}>
+          <ThemeSwitchButton {...props} />
+          <span>·</span>
+        </div>
         <Link href={"/about"}>
           <Typography.Text>About</Typography.Text>
         </Link>

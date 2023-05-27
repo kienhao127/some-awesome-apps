@@ -8,13 +8,16 @@ import styles from "src/styles/app.module.css";
 import { appWithTranslation } from "next-i18next";
 import Footer from "@/components/Footer";
 import { Layout, ConfigProvider, theme } from "antd";
-import { useState } from "react";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { THEME_MODE_KEY } from "@/utils/const";
 const inter = Inter({ subsets: ["latin"] });
 const { defaultAlgorithm, darkAlgorithm } = theme;
 
 function App({ Component, pageProps }: AppProps) {
-  const [darkMode, setDarkMode] = useState(true)!;
-
+  const [darkMode, setDarkMode] = useLocalStorage<boolean>(
+    THEME_MODE_KEY,
+    true
+  );
   return (
     <>
       <Script
