@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import styles from "src/styles/app.module.css";
 import { appWithTranslation } from "next-i18next";
 import Footer from "@/components/Footer";
+import { Layout } from "antd";
 const inter = Inter({ subsets: ["latin"] });
 
 function App({ Component, pageProps }: AppProps) {
@@ -34,11 +35,13 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="./favicon.ico" />
       </Head>
-      <Header />
-      <main className={`${styles.main} ${inter.className}`}>
-        <Component {...pageProps} />
-      </main>
-      <Footer />
+      <Layout>
+        <Header />
+        <Layout.Content className={`${styles.main} ${inter.className}`}>
+          <Component {...pageProps} />
+        </Layout.Content>
+        <Footer />
+      </Layout>
     </>
   );
 }

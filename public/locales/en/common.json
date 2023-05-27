@@ -4,7 +4,7 @@
   "replacement_app": "Replacement App",
   "replacement_app_description": "Replace the words in the passage according to your list.",
   "px2rem_converter": "PX to REM Converter",
-  "px2rem_converter_description": "Convert PX to REM or vice versa",
-  "compare_json": "Compare 2 JSON/Object",
-  "compare_json_description": "Compare 2 JSON/Object and Return missing [key]"
+  "px2rem_converter_description": "Convert PX to REM or vice versa.",
+  "compare_json": "Compare 2 JSON/Objects",
+  "compare_json_description": "Compare 2 JSON/Object and Return missing [key]."
 }

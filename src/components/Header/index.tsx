@@ -1,4 +1,4 @@
-import { Typography } from "antd";
+import { Layout, Typography } from "antd";
 import { blue } from "@ant-design/colors";
 import styles from "./styles.module.scss";
 import Link from "next/link";
@@ -11,14 +11,14 @@ const DynamicLanguageSwitchButton = dynamic(
 
 const Header = () => {
   return (
-    <header className={styles["header"]}>
+    <Layout.Header className={styles["header"]}>
       <Link href={"/"}>
         <Typography.Title style={{ color: blue.primary }}>
           Soawap
         </Typography.Title>
       </Link>
       <DynamicLanguageSwitchButton />
-    </header>
+    </Layout.Header>
   );
 };
 
