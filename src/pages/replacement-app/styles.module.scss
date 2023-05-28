@@ -17,7 +17,7 @@
   }
 }
 
-@media (width > 768px) {
+@media (width >= 768px) {
   .replacement-map {
     &__content {
       flex-direction: row;

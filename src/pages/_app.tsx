@@ -1,13 +1,14 @@
 import AppLayout from "@/components/AppLayout";
 import { ThemeProvider } from "@/context/ThemContext";
 import "@/styles/globals.scss";
+import { SessionProvider } from "next-auth/react";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -43,9 +44,11 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="./favicon.ico" />
       </Head>
       <ThemeProvider>
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
+        <SessionProvider session={session} refetchInterval={5 * 60}>
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </SessionProvider>
       </ThemeProvider>
     </>
   );

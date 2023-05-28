@@ -17,18 +17,22 @@ const Footer = () => {
         <Link
           href="https://www.buymeacoffee.com/luongkienhao"
           className={styles["footer__buymeacoffee"]}
+          target="_blank"
         >
           <Typography.Text style={{ fontSize: 16 }}>☕</Typography.Text>
           <Typography.Text> Buy me a coffee</Typography.Text>
         </Link>
         <span>·</span>
-        <Link href="https://github.com/kienhao127/some-awesome-apps">
+        <Link
+          href="https://github.com/kienhao127/some-awesome-apps"
+          target="_blank"
+        >
           <GithubOutlined
             style={{ color: darkMode ? token.colorPrimary : "#000000" }}
           />
         </Link>
         <span>·</span>
-        <Link href="https://linkedin.com/in/luongkienhao">
+        <Link href="https://linkedin.com/in/luongkienhao" target="_blank">
           <LinkedinOutlined
             style={{ color: darkMode ? token.colorPrimary : "#000000" }}
           />

@@ -84,7 +84,7 @@ function CompareJson() {
         </Typography.Title>
         <div className={styles["compare-json__content"]}>
           <Row justify="center" style={{ width: "100%" }} gutter={[16, 16]}>
-            <Col span={12}>
+            <Col xs={24} md={12}>
               <Typography.Title level={4}>
                 {tCompare("input_json")} A
               </Typography.Title>
@@ -95,7 +95,7 @@ function CompareJson() {
                 onChange={(e) => setJsonA(e.target.value)}
               />
             </Col>
-            <Col span={12}>
+            <Col xs={24} md={12}>
               <Typography.Title level={4}>
                 {tCompare("input_json")} B
               </Typography.Title>
@@ -115,7 +115,7 @@ function CompareJson() {
             {tCompare("compare")}
           </Button>
           <Row justify="center" style={{ width: "100%" }} gutter={[16, 16]}>
-            <Col span={12}>
+            <Col xs={24} md={12}>
               <Typography.Title level={4}>
                 {tCompare("missing_from_A")}:
               </Typography.Title>
@@ -123,7 +123,7 @@ function CompareJson() {
                 {missingKeys?.missingKeysJson1.join(", ")}
               </Typography.Text>
             </Col>
-            <Col span={12}>
+            <Col xs={24} md={12}>
               <Typography.Title level={4}>
                 {tCompare("missing_from_B")}:
               </Typography.Title>

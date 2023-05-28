@@ -14,5 +14,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "javascript.preferences.quoteStyle": "single",
-  "typescript.preferences.quoteStyle": "single" // Tell VSCode to use Prettier as default file formatter
+  "typescript.preferences.quoteStyle": "single",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  } // Tell VSCode to use Prettier as default file formatter
 }

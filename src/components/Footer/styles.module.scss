@@ -25,7 +25,7 @@
   }
 }
 
-@media (width > 768px) {
+@media (width >= 768px) {
   .footer {
     flex-direction: row;
     padding: 0 1rem;

@@ -10,7 +10,7 @@
   height: 100%;
 }
 
-@media (width > 768px) {
+@media (width >= 768px) {
   .app-card-container {
     width: 70vw;
   }

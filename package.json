@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next-auth/prisma-adapter": "^1.0.6",
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
@@ -17,6 +18,7 @@
     "eslint-config-next": "13.4.1",
     "i18next": "^22.4.15",
     "next": "13.4.1",
+    "next-auth": "^4.22.1",
     "next-i18next": "^13.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -24,5 +26,9 @@
     "sass": "^1.62.1",
     "typescript": "5.0.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@prisma/client": "^4.14.1",
+    "prisma": "^4.14.1",
+    "sqlite3": "^5.1.6"
+  }
 }
