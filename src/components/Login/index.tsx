@@ -4,7 +4,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 const Login = () => {
   const { data: session, status } = useSession();
-
   if (status === "loading") {
     return <div>Loading...</div>;
   }
@@ -15,12 +14,6 @@ const Login = () => {
         <GoogleOutlined /> Sign in with Google
       </Button>
     );
-  }
-
-  console.log(process.env.NODE_ENV);
-
-  if (process.env.NODE_ENV !== "development") {
-    return <></>;
   }
 
   return (

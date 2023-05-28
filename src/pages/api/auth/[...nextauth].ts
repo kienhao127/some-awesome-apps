@@ -14,19 +14,18 @@ const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user }) {
-      // Create or update the settings when the user logs in
+    async session({ session, token, user }) {
       const { id } = user;
       await prisma.setting.upsert({
         where: { userId: id },
         update: {},
         create: {
           userId: id,
-          theme: "dark", // Set a default theme or customize based on your needs
+          theme: "default", // Set a default theme or customize based on your needs
         },
       });
 
-      return true;
+      return session;
     },
   },
 };
