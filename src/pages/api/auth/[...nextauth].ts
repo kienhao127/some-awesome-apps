@@ -12,6 +12,7 @@ const options: NextAuthOptions = {
     }),
   ],
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXT_PUBLIC_SECRET,
   callbacks: {
     async signIn({ user }) {
       // Create or update the settings when the user logs in
