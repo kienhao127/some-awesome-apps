@@ -17,6 +17,10 @@ const Login = () => {
     );
   }
 
+  if (process.env.NODE_ENV !== "development") {
+    return <></>;
+  }
+
   return (
     <>
       <Typography.Text>Welcome, {session?.user?.name}!</Typography.Text>
