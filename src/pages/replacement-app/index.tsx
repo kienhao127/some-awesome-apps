@@ -1,13 +1,13 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { ReplacementMap } from "@/models";
+import { DEFAULT_LANGUAGE, REPLACEMENT_MAP_KEY } from "@/utils/const";
 import { Button, Col, Input, List, Row, Typography, notification } from "antd";
+import { GetStaticProps } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
 import { useState } from "react";
 import styles from "./styles.module.scss";
-import { ReplacementMap } from "@/models";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { DEFAULT_LANGUAGE, REPLACEMENT_MAP_KEY } from "@/utils/const";
-import Head from "next/head";
-import { useTranslation } from "next-i18next";
-import { GetStaticProps } from "next";
 
 function ReplacementAppPage() {
   const [replacementMap, setReplacementMap] = useLocalStorage<ReplacementMap>(

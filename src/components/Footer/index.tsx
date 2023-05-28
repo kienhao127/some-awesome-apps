@@ -1,15 +1,15 @@
-import Link from "next/link";
-import styles from "./styles.module.scss";
-import { Layout, Typography, theme } from "antd";
+import useThemeMode from "@/hooks/useThemeMode";
 import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons";
-import ThemeSwitchButton, {
-  ThemeSwitchButtonProps,
-} from "../ThemeSwitchButton";
+import { Layout, Typography, theme } from "antd";
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import ThemeSwitchButton from "../ThemeSwitchButton";
+import styles from "./styles.module.scss";
 
-type FooterProps = ThemeSwitchButtonProps;
-
-const Footer = (props: FooterProps) => {
+const Footer = () => {
   const { token } = theme.useToken();
+  const { darkMode } = useThemeMode();
+  const { t } = useTranslation();
 
   return (
     <Layout.Footer className={styles["footer"]}>
@@ -23,21 +23,22 @@ const Footer = (props: FooterProps) => {
         </Link>
         <span>·</span>
         <Link href="https://github.com/kienhao127/some-awesome-apps">
-          <GithubOutlined style={{ color: token.colorPrimary }} />
+          <GithubOutlined
+            style={{ color: darkMode ? token.colorPrimary : "#000000" }}
+          />
         </Link>
         <span>·</span>
         <Link href="https://linkedin.com/in/luongkienhao">
-          <LinkedinOutlined style={{ color: token.colorPrimary }} />
+          <LinkedinOutlined
+            style={{ color: darkMode ? token.colorPrimary : "#000000" }}
+          />
         </Link>
       </div>
       <div className={styles["footer__right"]}>
-        {/* TODO: Theme Mode in SSR */}
-        <div style={{ display: "none" }}>
-          <ThemeSwitchButton {...props} />
-          <span>·</span>
-        </div>
+        <ThemeSwitchButton />
+        <span>·</span>
         <Link href={"/about"}>
-          <Typography.Text>About</Typography.Text>
+          <Typography.Text>{t("about")}</Typography.Text>
         </Link>
         <span>·</span>
         <Typography.Text>

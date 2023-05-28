@@ -1,15 +1,13 @@
-import Head from "next/head";
-import { Card, Typography } from "antd";
-import Link from "next/link";
-import { blue } from "@ant-design/colors";
-import styles from "@/styles/app.module.css";
-import { GetStaticProps, NextPage } from "next";
 import { App, Response } from "@/models";
-import React from "react";
+import styles from "@/styles/app.module.scss";
 import { API_DOMAIN, DEFAULT_LANGUAGE } from "@/utils/const";
+import { blue } from "@ant-design/colors";
+import { Card, Typography } from "antd";
+import { GetStaticProps, NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+import Head from "next/head";
+import Link from "next/link";
 // Static Side Render
 const Home: NextPage<Response<App[]>> = ({ data }) => {
   const { t } = useTranslation("common");
@@ -24,7 +22,7 @@ const Home: NextPage<Response<App[]>> = ({ data }) => {
       <Typography.Title style={{ textAlign: "center" }}>
         {t("app.title")}
       </Typography.Title>
-      <div className={styles['app-card-container']}>
+      <div className={styles["app-card-container"]}>
         {data.map((item) => {
           return (
             <Link href={item.path} key={item.id}>

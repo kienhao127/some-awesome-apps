@@ -2,7 +2,10 @@
   "css.customData": [".vscode/css-data.json"],
   "peacock.color": "#1857a4",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll": true,
+    "source.organizeImports": true,
+    "source.sortMembers": true
   },
   // Add those two lines:
   "editor.formatOnSave": true, // Tell VSCode to format files on save

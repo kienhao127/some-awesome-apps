@@ -1,9 +1,9 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { GetStaticProps } from "next";
 import { DEFAULT_LANGUAGE } from "@/utils/const";
-import Head from "next/head";
-import { useTranslation } from "next-i18next";
 import { Typography } from "antd";
+import { GetStaticProps } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
 import styles from "./styles.module.scss";
 
 const About = () => {

@@ -1,11 +1,11 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { DEFAULT_LANGUAGE } from "@/utils/const";
 import { Button, Col, Input, Row, Typography } from "antd";
+import { GetStaticProps } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
 import { useState } from "react";
 import styles from "./styles.module.scss";
-import { DEFAULT_LANGUAGE } from "@/utils/const";
-import Head from "next/head";
-import { useTranslation } from "next-i18next";
-import { GetStaticProps } from "next";
 
 function CompareJson() {
   const { t: tCompare } = useTranslation("compareJson");
@@ -28,7 +28,7 @@ function CompareJson() {
   };
 
   const onCompareJson = (json1: string, json2: string) => {
-    if (json1 === "" && json2 === "") {
+    if (json1 === "" || json2 === "") {
       return {};
     }
     let fIndex = json1.indexOf("{");
@@ -38,8 +38,6 @@ function CompareJson() {
     fIndex = json2.indexOf("{");
     lIndex = json2.lastIndexOf("}");
     json2 = json2.slice(fIndex, lIndex + 1);
-
-    console.log(json1, json2);
 
     const obj1 =
       checkObjectType(json1) === "Object"
@@ -53,7 +51,6 @@ function CompareJson() {
     const missingKeysJson1: string[] = [];
     const missingKeysJson2: string[] = [];
 
-    console.log(obj1, obj2);
     // Compare keys in json1 and json2
     for (const key1 in obj1) {
       if (!(key1 in obj2)) {
@@ -122,13 +119,17 @@ function CompareJson() {
               <Typography.Title level={4}>
                 {tCompare("missing_from_A")}:
               </Typography.Title>
-              <p>{missingKeys?.missingKeysJson1.join(", ")}</p>
+              <Typography.Text>
+                {missingKeys?.missingKeysJson1.join(", ")}
+              </Typography.Text>
             </Col>
             <Col span={12}>
               <Typography.Title level={4}>
                 {tCompare("missing_from_B")}:
               </Typography.Title>
-              <p>{missingKeys?.missingKeysJson2.join(", ")}</p>
+              <Typography.Text>
+                {missingKeys?.missingKeysJson2.join(", ")}
+              </Typography.Text>
             </Col>
           </Row>
         </div>

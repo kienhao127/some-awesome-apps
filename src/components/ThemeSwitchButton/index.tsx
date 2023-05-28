@@ -1,17 +1,14 @@
-import React from "react";
+import useThemeMode from "@/hooks/useThemeMode";
 import { Switch } from "antd";
 
-export interface ThemeSwitchButtonProps {
-  darkMode: boolean;
-  setDarkMode: (darkMode: boolean) => void;
-}
+const ThemeSwitchButton = () => {
+  const { darkMode, toggleDarkMode } = useThemeMode();
 
-const ThemeSwitchButton = (props: ThemeSwitchButtonProps) => {
   return (
     <Switch
-      checked={props.darkMode}
-      onChange={props.setDarkMode}
-      checkedChildren="Dark"
+      checked={darkMode}
+      onChange={toggleDarkMode}
+      checkedChildren={"Dark"}
       unCheckedChildren="Light"
     />
   );

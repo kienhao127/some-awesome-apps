@@ -1,23 +1,23 @@
+import AppLayout from "@/components/AppLayout";
+import { ThemeProvider } from "@/context/ThemContext";
 import "@/styles/globals.scss";
-import type { AppProps } from "next/app";
-import Script from "next/script";
-import Header from "@/components/Header";
-import Head from "next/head";
-import { Inter } from "next/font/google";
-import styles from "src/styles/app.module.css";
 import { appWithTranslation } from "next-i18next";
-import Footer from "@/components/Footer";
-import { Layout, ConfigProvider, theme } from "antd";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { THEME_MODE_KEY } from "@/utils/const";
-const inter = Inter({ subsets: ["latin"] });
-const { defaultAlgorithm, darkAlgorithm } = theme;
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import Script from "next/script";
+import { useEffect, useState } from "react";
 
 function App({ Component, pageProps }: AppProps) {
-  const [darkMode, setDarkMode] = useLocalStorage<boolean>(
-    THEME_MODE_KEY,
-    true
-  );
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div style={{ visibility: "hidden" }}></div>;
+  }
+
   return (
     <>
       <Script
@@ -42,29 +42,11 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="./favicon.ico" />
       </Head>
-
-      <ConfigProvider
-        theme={{
-          algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
-          token: {
-            colorPrimary: "#2D88FF",
-          },
-          components: {
-            Layout: {
-              colorBgHeader: darkMode ? "#242526" : "#FFFFFF",
-              colorBgBody: darkMode ? "#18191A" : "#FFFFFF",
-            },
-          },
-        }}
-      >
-        <Layout>
-          <Header />
-          <Layout.Content className={`${styles.main} ${inter.className}`}>
-            <Component {...pageProps} />
-          </Layout.Content>
-          <Footer darkMode={darkMode} setDarkMode={setDarkMode} />
-        </Layout>
-      </ConfigProvider>
+      <ThemeProvider>
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
+      </ThemeProvider>
     </>
   );
 }
