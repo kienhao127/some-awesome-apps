@@ -2,7 +2,7 @@ import AppLayout from "@/components/AppLayout";
 import { ThemeProvider } from "@/context/ThemContext";
 import "@/styles/globals.scss";
 import { SessionProvider } from "next-auth/react";
-import { appWithTranslation } from "next-i18next";
+import { appWithTranslation, useTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [mounted, setMounted] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setMounted(true);
@@ -42,6 +43,8 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="./favicon.ico" />
+        <meta property="og:title" content={t("app.title") || ""} />
+        <meta property="og:description" content={t("app.title") || ""} />
       </Head>
       <ThemeProvider>
         <SessionProvider session={session} refetchInterval={5 * 60}>
