@@ -2,6 +2,8 @@
   "app.title": "Những ứng dụng xàm xí nào đó",
   "about": "Về Website",
   "settings": "Cài đặt",
+  "sign_in_with": "Đăng nhập với {{provider}}",
+  "sign_out": "Đăng xuất",
   "replacement_app": "Ứng dụng thay thế từ",
   "replacement_app_description": "Thay thế các từ trong đoạn văn theo danh sách của bạn.",
   "px2rem_converter": "Chuyển PX thành REM",

@@ -18,8 +18,10 @@ const Header = () => {
           Soawap
         </Typography.Title>
       </Link>
-      <Login />
-      <DynamicLanguageSwitchButton />
+      <div className={styles["header__right"]}>
+        <DynamicLanguageSwitchButton />
+        <Login />
+      </div>
     </Layout.Header>
   );
 };

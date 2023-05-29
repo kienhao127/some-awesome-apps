@@ -14,4 +14,8 @@
   h1 {
     margin: 0;
   }
+  &__right {
+    display: flex;
+    gap: 1rem;
+  }
 }

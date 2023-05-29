@@ -37,6 +37,11 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         </Layout.Content>
         <Footer />
       </Layout>
+      <style jsx global>{`
+        body {
+          background: ${darkMode ? "#18191A" : "#FFFFFF"};
+        }
+      `}</style>
     </ConfigProvider>
   );
 };

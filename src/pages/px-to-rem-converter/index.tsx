@@ -1,15 +1,15 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { Button, Col, Input, Row, Table, Typography, notification } from "antd";
-import { CopyOutlined } from "@ant-design/icons";
-import { SwapOutlined } from "@ant-design/icons";
-import styles from "./styles.module.scss";
 import { DEFAULT_LANGUAGE } from "@/utils/const";
-import Head from "next/head";
-import { useTranslation } from "next-i18next";
-import { GetStaticProps } from "next";
-import { ChangeEvent, useState } from "react";
-import { useRouter } from "next/router";
+import { CopyOutlined, SwapOutlined } from "@ant-design/icons";
+import { Button, Col, Input, Row, Table, Typography, notification } from "antd";
 import type { ColumnType } from "antd/es/table";
+import { GetStaticProps } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { ChangeEvent, useState } from "react";
+import styles from "./styles.module.scss";
+import useThemeMode from '@/hooks/useThemeMode';
 
 interface DataType {
   px: number;
@@ -28,6 +28,7 @@ const REMs = [
 
 function ReplacementAppPage() {
   const { t } = useTranslation("px2rem");
+  const { darkMode } = useThemeMode();
   const { t: tCommon } = useTranslation("common");
   const [px, setPx] = useState<string>("16");
   const [rem, setRem] = useState<string>("1");
@@ -144,7 +145,7 @@ function ReplacementAppPage() {
           <div className={styles["px2rem-app__input-container"]}>
             <div className={styles["px2rem-app__input"]}>
               <Typography.Title level={4}>
-                Pixels{" "}
+                Pixels
                 <Button
                   size="small"
                   onClick={() => onCopy(`${px}px`)}
@@ -153,10 +154,10 @@ function ReplacementAppPage() {
               </Typography.Title>
               <Input value={px} onChange={onPxChange} suffix={"PX"} />
             </div>
-            <SwapOutlined style={{ lineHeight: "2rem" }} />
+            <SwapOutlined style={{ height: "2rem", color: darkMode ? '#FFFFFF' : '#000000' }} />
             <div className={styles["px2rem-app__input"]}>
               <Typography.Title level={4}>
-                REM{" "}
+                REM
                 <Button
                   size="small"
                   onClick={() => onCopy(`${rem}rem`)}
@@ -169,14 +170,14 @@ function ReplacementAppPage() {
 
           <div className={styles["px2rem-app__input"]}>
             <Typography.Text>
-              {t("px2rem_note")}{" "}
+              {t("px2rem_note")}
               <Input
                 style={{ width: 32 }}
                 value={baseValue}
                 onChange={onBaseValueChange}
                 size="small"
                 onBlur={onBaseValueBlur}
-              />{" "}
+              />
               pixel{Number(baseValue) > 1 && router.locale === "en" ? "s" : ""}.
             </Typography.Text>
           </div>
