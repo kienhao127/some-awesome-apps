@@ -17,6 +17,9 @@ const Home: NextPage<Response<App[]>> = ({ data }) => {
       <Head>
         <title>{t("app.title")}</title>
         <meta name="description" content={t("app.title") || ""} />
+
+        <meta name="og:title" content={t("app.title") || ""} />
+        <meta name="og:description" content={t("app.title") || ""} />
       </Head>
 
       <Typography.Title style={{ textAlign: "center" }}>
