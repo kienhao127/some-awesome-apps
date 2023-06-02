@@ -66,6 +66,14 @@ function ReplacementAppPage() {
           name="keywords"
           content="replacement, replacement app, replacement_app"
         />
+        <meta
+          property="og:title"
+          content={`${t("replacement_app")} | ${t("app.title")}`}
+        />
+        <meta
+          property="og:description"
+          content={t("replacement_app_description") || ""}
+        />
       </Head>
       <section className={styles["replacement-map"]}>
         <Typography.Title

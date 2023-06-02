@@ -16,10 +16,6 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <div style={{ visibility: "hidden" }}></div>;
-  }
-
   return (
     <>
       <Script
@@ -45,14 +41,19 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <link rel="icon" href="./favicon.ico" />
         <meta property="og:title" content={t("app.title") || ""} />
         <meta property="og:description" content={t("app.title") || ""} />
+        <meta property="og:image" content="./thumbnail.webp" />
       </Head>
-      <ThemeProvider>
-        <SessionProvider session={session} refetchInterval={5 * 60}>
-          <AppLayout>
-            <Component {...pageProps} />
-          </AppLayout>
-        </SessionProvider>
-      </ThemeProvider>
+      {!mounted ? (
+        <div style={{ visibility: "hidden" }}></div>
+      ) : (
+        <ThemeProvider>
+          <SessionProvider session={session} refetchInterval={5 * 60}>
+            <AppLayout>
+              <Component {...pageProps} />
+            </AppLayout>
+          </SessionProvider>
+        </ThemeProvider>
+      )}
     </>
   );
 }
