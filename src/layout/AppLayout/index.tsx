@@ -30,13 +30,13 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         },
       }}
     >
+      <Header />
       <Layout>
-        <Header />
         <Layout.Content className={`${styles.main} ${inter.className}`}>
           {children}
         </Layout.Content>
-        <Footer />
       </Layout>
+      <Footer />
       <style jsx global>{`
         body {
           background: ${darkMode ? "#18191A" : "#FFFFFF"};

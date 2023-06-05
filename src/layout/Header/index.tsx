@@ -2,8 +2,8 @@ import { Layout, theme } from "antd";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import Login from "../Login";
 import styles from "./styles.module.scss";
+import Login from '@/components/Login';
 
 const DynamicLanguageSwitchButton = dynamic(
   () => import("@/components/LanguageSwitchButton"),

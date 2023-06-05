@@ -1,4 +1,5 @@
 import useLocalStorage from "@/hooks/useLocalStorage";
+import AppLayout from "@/layout/AppLayout";
 import { ReplacementMap } from "@/models";
 import { DEFAULT_LANGUAGE, REPLACEMENT_MAP_KEY } from "@/utils/const";
 import { Button, Col, Input, List, Row, Typography, notification } from "antd";
@@ -6,10 +7,11 @@ import { GetStaticProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
+import { NextPageWithLayout } from "../_app";
 import styles from "./styles.module.scss";
 
-function ReplacementAppPage() {
+const ReplacementAppPage: NextPageWithLayout = () => {
   const [replacementMap, setReplacementMap] = useLocalStorage<ReplacementMap>(
     REPLACEMENT_MAP_KEY,
     {}
@@ -158,7 +160,7 @@ function ReplacementAppPage() {
       </section>
     </>
   );
-}
+};
 
 export default ReplacementAppPage;
 
@@ -171,4 +173,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       ])),
     },
   };
+};
+
+ReplacementAppPage.getLayout = function getLayout(page: ReactElement) {
+  return <AppLayout>{page}</AppLayout>;
 };

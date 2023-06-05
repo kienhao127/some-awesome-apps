@@ -1,13 +1,15 @@
+import AppLayout from "@/layout/AppLayout";
 import { DEFAULT_LANGUAGE } from "@/utils/const";
 import { Button, Col, Input, Row, Typography } from "antd";
 import { GetStaticProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
+import { NextPageWithLayout } from "../_app";
 import styles from "./styles.module.scss";
 
-function CompareJson() {
+const CompareJson: NextPageWithLayout = () => {
   const { t: tCompare } = useTranslation("compareJson");
   const { t } = useTranslation();
   const [jsonA, setJsonA] = useState("");
@@ -136,7 +138,7 @@ function CompareJson() {
       </section>
     </>
   );
-}
+};
 
 export default CompareJson;
 
@@ -149,4 +151,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       ])),
     },
   };
+};
+
+CompareJson.getLayout = function getLayout(page: ReactElement) {
+  return <AppLayout>{page}</AppLayout>;
 };

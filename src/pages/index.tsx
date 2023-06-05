@@ -1,15 +1,19 @@
+import AppLayout from "@/layout/AppLayout";
 import { App, Response } from "@/models";
 import styles from "@/styles/app.module.scss";
 import { API_DOMAIN, DEFAULT_LANGUAGE } from "@/utils/const";
 import { blue } from "@ant-design/colors";
 import { Card, Typography } from "antd";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import Link from "next/link";
+import { ReactElement } from "react";
+import { NextPageWithLayout } from "./_app";
+
 // Static Side Render
-const Home: NextPage<Response<App[]>> = ({ data }) => {
+const Home: NextPageWithLayout<Response<App[]>> = ({ data }) => {
   const { t } = useTranslation("common");
 
   return (
@@ -17,6 +21,8 @@ const Home: NextPage<Response<App[]>> = ({ data }) => {
       <Head>
         <title>{t("app.title")}</title>
         <meta name="description" content={t("app.title") || ""} />
+        <meta property="og:title" content={t("app.title") || ""} />
+        <meta property="og:description" content={t("app.title") || ""} />
       </Head>
 
       <Typography.Title style={{ textAlign: "center" }}>
@@ -72,3 +78,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 };
 
 export default Home;
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <AppLayout>{page}</AppLayout>;
+};

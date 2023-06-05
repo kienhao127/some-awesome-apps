@@ -2,14 +2,24 @@ import useThemeMode from "@/hooks/useThemeMode";
 import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons";
 import { Layout, Typography, theme } from "antd";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import ThemeSwitchButton from "../ThemeSwitchButton";
 import styles from "./styles.module.scss";
+import ThemeSwitchButton from '@/components/ThemeSwitchButton';
 
 const Footer = () => {
   const { token } = theme.useToken();
   const { darkMode } = useThemeMode();
+  const [isMounted, setIsMounted] = useState(false);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <Layout.Footer className={styles["footer"]}>

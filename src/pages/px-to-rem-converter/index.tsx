@@ -1,3 +1,5 @@
+import useThemeMode from "@/hooks/useThemeMode";
+import AppLayout from "@/layout/AppLayout";
 import { DEFAULT_LANGUAGE } from "@/utils/const";
 import { CopyOutlined, SwapOutlined } from "@ant-design/icons";
 import { Button, Col, Input, Row, Table, Typography, notification } from "antd";
@@ -7,9 +9,9 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, ReactElement, useState } from "react";
+import { NextPageWithLayout } from "../_app";
 import styles from "./styles.module.scss";
-import useThemeMode from '@/hooks/useThemeMode';
 
 interface DataType {
   px: number;
@@ -26,7 +28,7 @@ const REMs = [
   30, 40, 50, 60, 80, 100,
 ];
 
-function ReplacementAppPage() {
+const PxToRemConverterPage: NextPageWithLayout = () => {
   const { t } = useTranslation("px2rem");
   const { darkMode } = useThemeMode();
   const { t: tCommon } = useTranslation("common");
@@ -154,7 +156,12 @@ function ReplacementAppPage() {
               </Typography.Title>
               <Input value={px} onChange={onPxChange} suffix={"PX"} />
             </div>
-            <SwapOutlined style={{ height: "2rem", color: darkMode ? '#FFFFFF' : '#000000' }} />
+            <SwapOutlined
+              style={{
+                height: "2rem",
+                color: darkMode ? "#FFFFFF" : "#000000",
+              }}
+            />
             <div className={styles["px2rem-app__input"]}>
               <Typography.Title level={4}>
                 REM
@@ -203,9 +210,9 @@ function ReplacementAppPage() {
       </section>
     </>
   );
-}
+};
 
-export default ReplacementAppPage;
+export default PxToRemConverterPage;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
@@ -216,4 +223,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
       ])),
     },
   };
+};
+
+PxToRemConverterPage.getLayout = function getLayout(page: ReactElement) {
+  return <AppLayout>{page}</AppLayout>;
 };
