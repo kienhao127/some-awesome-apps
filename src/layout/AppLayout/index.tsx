@@ -18,6 +18,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <ConfigProvider
       theme={{
+        hashed: false,
         algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
         token: {
           colorPrimary: "#2D88FF",

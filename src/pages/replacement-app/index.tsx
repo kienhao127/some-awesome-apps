@@ -21,6 +21,7 @@ const ReplacementAppPage: NextPageWithLayout = () => {
   const [longString, setLongString] = useState("");
   const [replacedString, setReplacedString] = useState("");
   const { t } = useTranslation("replacement");
+  const { t: tCommon } = useTranslation("common");
 
   const addReplacement = () => {
     if (key && value) {
@@ -59,7 +60,7 @@ const ReplacementAppPage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>{`${t("replacement_app")} | ${t("app.title")}`}</title>
+        <title>{`${t("replacement_app")} | ${tCommon("app.title")}`}</title>
         <meta
           name="description"
           content={t("replacement_app_description") || ""}
@@ -70,7 +71,7 @@ const ReplacementAppPage: NextPageWithLayout = () => {
         />
         <meta
           property="og:title"
-          content={`${t("replacement_app")} | ${t("app.title")}`}
+          content={`${t("replacement_app")} | ${tCommon("app.title")}`}
         />
         <meta
           property="og:description"
